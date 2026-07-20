@@ -1,7 +1,6 @@
 import 'package:alhoulaguide/views/screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -15,19 +14,23 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      locale : Locale('ar'),
+      locale : const Locale('ar'),
       supportedLocales: const[
         Locale('ar'),
         Locale('en'),
       ],
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        fontFamily: 'Cairo',
+      ),
+      home: const HomePage(),
     );
   }
 }

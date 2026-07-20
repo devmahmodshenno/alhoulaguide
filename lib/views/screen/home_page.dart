@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:alhoulaguide/views/widget/areaCard.dart';
 import 'package:alhoulaguide/views/widget/customBtmNavBar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,13 +74,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFFFFAF0),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'دليل الحولة',
           textAlign: TextAlign.start,
-          style: TextStyle(
+          style: GoogleFonts.cairo(
             color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.bold,
+            
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 35, 85, 37),
