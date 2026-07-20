@@ -72,19 +72,7 @@ class _HomeContentState extends State<HomeContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFAF0),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'دليل الحولة',
-          textAlign: TextAlign.start,
-          style: GoogleFonts.cairo(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 35, 85, 37),
-      ),
+    
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
