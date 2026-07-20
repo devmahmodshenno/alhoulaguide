@@ -28,7 +28,7 @@ class CustomBtmNavBar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'الرئيسية'),
         BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'جميع الأقسام'),
         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'المفضلة'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'حسابي'),
+        BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'المزيد'),
       ],
     );
   }

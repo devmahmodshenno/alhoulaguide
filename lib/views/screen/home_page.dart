@@ -18,6 +18,12 @@ class _HomePageState extends State<HomePage> {
     'images/ads.jpeg',
     'images/ads.jpeg',
   ];
+  List<String> areaImages = [
+    'images/area.jpeg',
+    'images/area.jpeg',
+    'images/area.jpeg',
+    'images/area.jpeg',
+  ];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -152,10 +158,10 @@ class _HomePageState extends State<HomePage> {
               childAspectRatio: 1.15,
               padding: const EdgeInsets.all(15),
               children: [
-                AreaCard(areaName: 'المنطقة الأولى', onTap: () {}),
-                AreaCard(areaName: 'المنطقة الثانية', onTap: () {}),
-                AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}),
-                AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}),
+                AreaCard(areaName: 'المنطقة الأولى', onTap: () {}, imagePath: areaImages[0],),
+                AreaCard(areaName: 'المنطقة الثانية', onTap: () {}, imagePath: areaImages[1],),
+                AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}, imagePath: areaImages[2],),
+                AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}, imagePath: areaImages[3],),
               ],
             ),
           ),
