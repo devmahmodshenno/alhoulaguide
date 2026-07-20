@@ -1,3 +1,4 @@
+
 import 'package:alhoulaguide/views/screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,11 +17,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      locale : const Locale('ar'),
-      supportedLocales: const[
-        Locale('ar'),
-        Locale('en'),
-      ],
+      locale: const Locale('ar'),
+      supportedLocales: const [Locale('ar'), Locale('en')],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -29,6 +27,10 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         fontFamily: 'Cairo',
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF235525),
+          foregroundColor: Colors.white,
+        ),
       ),
       home: const HomePage(),
     );

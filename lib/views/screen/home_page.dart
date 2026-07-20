@@ -1,4 +1,4 @@
-// lib/pages/home_page.dart
+
 import 'package:alhoulaguide/views/screen/allSectionsPage.dart';
 import 'package:alhoulaguide/views/screen/favoritesPage.dart';
 import 'package:alhoulaguide/views/screen/homeContent.dart';
@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = const [
     HomeContent(),
-    Allsectionspage(),
+    AllSectionsPage(),
     Favoritespage(),
     MorePage(),
   ];

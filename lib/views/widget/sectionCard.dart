@@ -20,7 +20,7 @@ class SectionCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFEAF3E9),
+          color: const Color.fromARGB(255, 243, 240, 233),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: const Color(0xFF235525), width: 1),
         ),
