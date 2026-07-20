@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:alhoulaguide/views/widget/areaCard.dart';
+import 'package:alhoulaguide/views/widget/customBtmNavBar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,17 +18,17 @@ class _HomePageState extends State<HomePage> {
     'images/ads.jpeg',
     'images/ads.jpeg',
   ];
-
-  late final PageController _pageController;
-  Timer? _timer;
-  int _currentPage = 0;
-
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
+  late final PageController _pageController;
+  Timer? _timer;
+  int _currentPage = 0;
 
   @override
   void initState() {
@@ -160,24 +161,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
+      bottomNavigationBar: CustomBtmNavBar(
+        selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color.fromARGB(255, 35, 85, 37),
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        selectedLabelStyle: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-        ),
-        unselectedLabelStyle: const TextStyle(fontSize: 11),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'الرئيسية'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'بحث'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'المفضلة'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'حسابي'),
-        ],
       ),
     );
   }
