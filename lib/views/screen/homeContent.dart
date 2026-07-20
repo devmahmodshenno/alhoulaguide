@@ -197,10 +197,7 @@ class _HomeContentState extends State<HomeContent> {
           ),
         ],
       ),
-      bottomNavigationBar: CustomBtmNavBar(
-        selectedIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

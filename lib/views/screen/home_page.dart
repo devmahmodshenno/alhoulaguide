@@ -6,7 +6,6 @@ import 'package:alhoulaguide/views/screen/morePage.dart';
 import 'package:alhoulaguide/views/widget/customBtmNavBar.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -23,14 +22,6 @@ class _HomePageState extends State<HomePage> {
     Favoritespage(),
     MorePage(),
   ];
-
-  final List<String> _titles = const [
-    'الرئيسية',
-    'جميع الأقسام',
-    'المفضلة',
-    'المزيد',
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -41,22 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFAF0),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          _titles[_selectedIndex],
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 35, 85, 37),
-      ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: CustomBtmNavBar(
         selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
