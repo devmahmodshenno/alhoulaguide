@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:alhoulaguide/views/widget/areaCard.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -121,13 +122,31 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-        
+
           const Align(
             alignment: AlignmentGeometry.centerEnd,
             child: Text(
               "المزيد...  ",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
+          ),
+          const Text(
+            "  تصفح حسب المنطقة",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            padding: const EdgeInsets.all(15),
+            children: [
+              AreaCard(areaName: 'المنطقة الأولى', onTap: () {}),
+              AreaCard(areaName: 'المنطقة الثانية', onTap: () {}),
+              AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}),
+              AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}),
+            ],
           ),
         ],
       ),
