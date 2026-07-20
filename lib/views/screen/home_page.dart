@@ -81,7 +81,6 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 35, 85, 37),
@@ -90,9 +89,13 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          const Text(
+          Text(
             '  آخر العروض و الإعلانات',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: GoogleFonts.cairo(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 10),
           SizedBox(
@@ -139,16 +142,24 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          const Align(
+          Align(
             alignment: AlignmentGeometry.centerEnd,
             child: Text(
               "المزيد...  ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: GoogleFonts.cairo(
+                color: Colors.black,
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          const Text(
+          Text(
             "  تصفح حسب المنطقة",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: GoogleFonts.cairo(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           Expanded(
             child: GridView.count(
@@ -160,10 +171,26 @@ class _HomePageState extends State<HomePage> {
               childAspectRatio: 1.15,
               padding: const EdgeInsets.all(15),
               children: [
-                AreaCard(areaName: 'المنطقة الأولى', onTap: () {}, imagePath: areaImages[0],),
-                AreaCard(areaName: 'المنطقة الثانية', onTap: () {}, imagePath: areaImages[1],),
-                AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}, imagePath: areaImages[2],),
-                AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}, imagePath: areaImages[3],),
+                AreaCard(
+                  areaName: 'المنطقة الأولى',
+                  onTap: () {},
+                  imagePath: areaImages[0],
+                ),
+                AreaCard(
+                  areaName: 'المنطقة الثانية',
+                  onTap: () {},
+                  imagePath: areaImages[1],
+                ),
+                AreaCard(
+                  areaName: 'المنطقة الثالثة',
+                  onTap: () {},
+                  imagePath: areaImages[2],
+                ),
+                AreaCard(
+                  areaName: 'المنطقة الرابعة',
+                  onTap: () {},
+                  imagePath: areaImages[3],
+                ),
               ],
             ),
           ),

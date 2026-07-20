@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AreaCard extends StatelessWidget {
   final String areaName;
@@ -34,7 +35,7 @@ class AreaCard extends StatelessWidget {
             child: Text(
               areaName,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: GoogleFonts.cairo(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
