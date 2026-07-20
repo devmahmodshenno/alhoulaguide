@@ -22,6 +22,13 @@ class _HomePageState extends State<HomePage> {
   Timer? _timer;
   int _currentPage = 0;
 
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -134,20 +141,42 @@ class _HomePageState extends State<HomePage> {
             "  تصفح حسب المنطقة",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          GridView.count(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            padding: const EdgeInsets.all(15),
-            children: [
-              AreaCard(areaName: 'المنطقة الأولى', onTap: () {}),
-              AreaCard(areaName: 'المنطقة الثانية', onTap: () {}),
-              AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}),
-              AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}),
-            ],
+          Expanded(
+            child: GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1.15,
+              padding: const EdgeInsets.all(15),
+              children: [
+                AreaCard(areaName: 'المنطقة الأولى', onTap: () {}),
+                AreaCard(areaName: 'المنطقة الثانية', onTap: () {}),
+                AreaCard(areaName: 'المنطقة الثالثة', onTap: () {}),
+                AreaCard(areaName: 'المنطقة الرابعة', onTap: () {}),
+              ],
+            ),
           ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color.fromARGB(255, 35, 85, 37),
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        selectedLabelStyle: const TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: const TextStyle(fontSize: 11),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'الرئيسية'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'بحث'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'المفضلة'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'حسابي'),
         ],
       ),
     );

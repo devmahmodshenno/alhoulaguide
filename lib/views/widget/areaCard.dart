@@ -4,11 +4,7 @@ class AreaCard extends StatelessWidget {
   final String areaName;
   final VoidCallback? onTap;
 
-  const AreaCard({
-    super.key,
-    required this.areaName,
-    this.onTap,
-  });
+  const AreaCard({super.key, required this.areaName, this.onTap});
 
   @override
   Widget build(BuildContext context) {
