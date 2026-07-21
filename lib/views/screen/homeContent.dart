@@ -160,22 +160,22 @@ class _HomeContentState extends State<HomeContent> {
               padding: const EdgeInsets.all(15),
               children: [
                 AreaCard(
-                  areaName: 'المنطقة الأولى',
+                  areaName: 'تلدو',
                   onTap: () {},
                   imagePath: areaImages[0],
                 ),
                 AreaCard(
-                  areaName: 'المنطقة الثانية',
+                  areaName: 'الطيبة الغربية',
                   onTap: () {},
                   imagePath: areaImages[1],
                 ),
                 AreaCard(
-                  areaName: 'المنطقة الثالثة',
+                  areaName: 'كفرلاها',
                   onTap: () {},
                   imagePath: areaImages[2],
                 ),
                 AreaCard(
-                  areaName: 'المنطقة الرابعة',
+                  areaName: 'تلذهب',
                   onTap: () {},
                   imagePath: areaImages[3],
                 ),

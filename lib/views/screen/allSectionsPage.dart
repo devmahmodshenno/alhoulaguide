@@ -1,4 +1,4 @@
-// lib/pages/all_sections_page.dart
+import 'package:alhoulaguide/views/screen/restaurantsPage.dart';
 import 'package:alhoulaguide/views/widget/sectionCard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,14 +9,16 @@ class AllSectionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sections = [
-      {'title': 'أماكن سياحية', 'icon': Icons.landscape_outlined},
-      {'title': 'مطاعم ومقاهي', 'icon': Icons.restaurant_outlined},
-      {'title': 'فنادق', 'icon': Icons.hotel_outlined},
-      {'title': 'خدمات', 'icon': Icons.support_agent_outlined},
-      {'title': 'مستشفيات وصيدليات', 'icon': Icons.local_hospital_outlined},
-      {'title': 'تسوق', 'icon': Icons.shopping_bag_outlined},
-      {'title': 'نقل ومواصلات', 'icon': Icons.directions_bus_outlined},
-      {'title': 'طوارئ', 'icon': Icons.emergency_outlined},
+      {
+        'title': 'مطاعم',
+        'icon': Icons.restaurant_outlined,
+        'page': const RestaurantsPage(),
+      },
+      {
+        'title': 'طوارئ',
+        'icon': Icons.emergency_outlined,
+        'page': null, // لسا ما جهزنا الصفحة الخاصة فيه
+      },
     ];
 
     return Scaffold(
@@ -30,7 +32,7 @@ class AllSectionsPage extends StatelessWidget {
               style: GoogleFonts.cairo(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF235525),
+                color: const Color(0xFF235525),
               ),
             ),
           ),
@@ -46,7 +48,23 @@ class AllSectionsPage extends StatelessWidget {
                   title: section['title'] as String,
                   icon: section['icon'] as IconData,
                   onTap: () {
-                    // لاحقًا: الانتقال لصفحة تفاصيل القسم
+                    final page = section['page'] as Widget?;
+                    if (page != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => page),
+                      );
+                    } else {
+                      // القسم لسا ما جهزنا صفحته
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '${section['title']} — الصفحة قيد التجهيز',
+                            style: GoogleFonts.cairo(),
+                          ),
+                        ),
+                      );
+                    }
                   },
                 );
               }).toList(),

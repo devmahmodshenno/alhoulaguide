@@ -36,7 +36,7 @@ class AreaCard extends StatelessWidget {
               areaName,
               textAlign: TextAlign.center,
               style: GoogleFonts.cairo(
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),

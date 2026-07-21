@@ -11,6 +11,7 @@ class restaurantCard extends StatelessWidget {
     required this.areaName,
     required this.address,
     required this.imagePath,
+    required this.isFavorite,
     this.onTap,
     this.onRemoveFavorite,
   });
@@ -21,6 +22,7 @@ class restaurantCard extends StatelessWidget {
   final String areaName;
   final String address;
   final String imagePath;
+  final bool isFavorite;
   final VoidCallback? onTap;
   final VoidCallback? onRemoveFavorite;
 
@@ -59,50 +61,17 @@ class restaurantCard extends StatelessWidget {
                   ),
                 ),
                 PositionedDirectional(
-                  top: 10,
-                  start: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF235525),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.restaurant,
-                          size: 13,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'مطاعم',
-                          style: GoogleFonts.cairo(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                PositionedDirectional(
                   top: 6,
                   end: 6,
                   child: IconButton(
                     onPressed: onRemoveFavorite,
-                    icon: const Icon(Icons.favorite, color: Colors.redAccent),
+                    icon: isFavorite ? const Icon(Icons.favorite, color: Colors.redAccent) : const Icon(Icons.favorite_border, color: Colors.grey),
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.white.withOpacity(0.85),
                     ),
                   ),
                 ),
-                if (hasDelivery)
+                
                   PositionedDirectional(
                     bottom: 8,
                     start: 10,
@@ -124,23 +93,24 @@ class restaurantCard extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.delivery_dining,
                             size: 15,
-                            color: Color(0xFF235525),
+                            color: hasDelivery ? const Color(0xFF235525) : Colors.redAccent,
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            'توصيل متاح',
+                            hasDelivery ? 'توصيل متاح' : 'لا يوجد توصيل',
                             style: GoogleFonts.cairo(
                               fontSize: 11,
-                              color: const Color(0xFF235525),
+                              color: hasDelivery ? const Color(0xFF235525) : Colors.redAccent,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
+                
               ],
             ),
             Padding(
