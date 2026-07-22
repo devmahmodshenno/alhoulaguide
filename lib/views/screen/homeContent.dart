@@ -142,10 +142,10 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ),
           Text(
-            "  تصفح حسب المنطقة",
+            "  تصفح الأقسام حسب المنطقة",
             style: GoogleFonts.cairo(
               color: Colors.black,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
