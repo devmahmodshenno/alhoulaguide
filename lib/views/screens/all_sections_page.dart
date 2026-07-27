@@ -1,5 +1,5 @@
-import 'package:alhoulaguide/views/screen/restaurantsPage.dart';
-import 'package:alhoulaguide/views/widget/sectionCard.dart';
+import 'package:alhoulaguide/views/screens/restaurants_page.dart';
+import 'package:alhoulaguide/views/widgets/section_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

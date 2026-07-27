@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:alhoulaguide/views/widget/areaCard.dart';
+import 'package:alhoulaguide/views/screens/taldawo_page.dart';
+import 'package:alhoulaguide/views/widgets/area_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -161,7 +162,14 @@ class _HomeContentState extends State<HomeContent> {
               children: [
                 AreaCard(
                   areaName: 'تلدو',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TaldawoPage(),
+                      ),
+                    );
+                  },
                   imagePath: areaImages[0],
                 ),
                 AreaCard(

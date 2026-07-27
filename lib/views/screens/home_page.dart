@@ -1,9 +1,9 @@
 
-import 'package:alhoulaguide/views/screen/allSectionsPage.dart';
-import 'package:alhoulaguide/views/screen/favoritesPage.dart';
-import 'package:alhoulaguide/views/screen/homeContent.dart';
-import 'package:alhoulaguide/views/screen/morePage.dart';
-import 'package:alhoulaguide/views/widget/customBtmNavBar.dart';
+import 'package:alhoulaguide/views/screens/all_sections_page.dart';
+import 'package:alhoulaguide/views/screens/favorites_page.dart';
+import 'package:alhoulaguide/views/screens/home_content.dart';
+import 'package:alhoulaguide/views/screens/more_page.dart';
+import 'package:alhoulaguide/views/widgets/custom_btm_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

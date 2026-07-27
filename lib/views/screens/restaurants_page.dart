@@ -1,8 +1,8 @@
 // lib/views/screen/restaurantsPage.dart
-import 'package:alhoulaguide/views/widget/restaurantCard.dart';
+import 'package:alhoulaguide/views/widgets/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
- // عدّل المسار حسب مكان الملف عندك
+// عدّل المسار حسب مكان الملف عندك
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -12,7 +12,6 @@ class RestaurantsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFAF0),
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           'مطاعم',
           style: GoogleFonts.cairo(
@@ -21,7 +20,7 @@ class RestaurantsPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 35, 85, 37),
+        backgroundColor: const Color.fromARGB(255, 35, 85, 37),iconTheme: IconThemeData(color: const Color.fromARGB(255, 244, 231, 54)),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -29,29 +28,26 @@ class RestaurantsPage extends StatelessWidget {
           restaurantCard(
             restaurantName: 'مطعم الحولة',
             imagePath: 'images/restaurant.jpeg',
-            restaurantDescription: 'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
+            restaurantDescription:
+                'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
             restaurantPhone: '0991234567',
             hasDelivery: true,
             isFavorite: true,
-            areaName:'تلذهب',
+            areaName: 'تلذهب',
             address: 'شارع السوق',
-            onRemoveFavorite: () {
-              
-            },
-            
+            onRemoveFavorite: () {},
           ),
           restaurantCard(
             restaurantName: ' مطعم الطيبة',
             imagePath: 'images/restaurant.jpeg',
-            restaurantDescription: 'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
+            restaurantDescription:
+                'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
             restaurantPhone: '0997654321',
             hasDelivery: false,
             isFavorite: false,
-            areaName:'تلدو',
+            areaName: 'تلدو',
             address: 'شارع النخيل',
-            onRemoveFavorite: () {
-              
-            },
+            onRemoveFavorite: () {},
           ),
         ],
       ),

@@ -1,4 +1,4 @@
-import 'package:alhoulaguide/views/widget/restaurantCard.dart';
+import 'package:alhoulaguide/views/widgets/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
