@@ -1,4 +1,5 @@
 
+import 'package:alhoulaguide/services/auth_service.dart';
 import 'package:alhoulaguide/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,13 +9,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting("ar", null);
-  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
-    anonKey: dotenv.env['SUPABSE_ANON_KEY']!
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!
   );
+  await AuthService.signInAnonymouslyIfNeeded();
+  await initializeDateFormatting("ar", null);
   runApp(const MainApp());
 }
 

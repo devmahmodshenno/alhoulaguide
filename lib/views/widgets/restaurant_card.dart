@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class restaurantCard extends StatelessWidget {
-  const restaurantCard({
+class RestaurantCard extends StatelessWidget {
+  const RestaurantCard({
     super.key,
     required this.restaurantName,
     required this.restaurantDescription,
@@ -11,10 +11,11 @@ class restaurantCard extends StatelessWidget {
     required this.areaName,
     required this.address,
     required this.imagePath,
-    required this.isFavorite,
+    this.isFavorite = false,
     this.onTap,
     this.onRemoveFavorite,
   });
+
   final String restaurantName;
   final String restaurantDescription;
   final String restaurantPhone;
@@ -65,52 +66,57 @@ class restaurantCard extends StatelessWidget {
                   end: 6,
                   child: IconButton(
                     onPressed: onRemoveFavorite,
-                    icon: isFavorite ? const Icon(Icons.favorite, color: Colors.redAccent) : const Icon(Icons.favorite_border, color: Colors.grey),
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.redAccent : Colors.grey,
+                    ),
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.white.withOpacity(0.85),
                     ),
                   ),
                 ),
-                
-                  PositionedDirectional(
-                    bottom: 8,
-                    start: 10,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 4,
+                PositionedDirectional(
+                  bottom: 8,
+                  start: 10,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.delivery_dining,
+                          size: 15,
+                          color: hasDelivery
+                              ? const Color(0xFF235525)
+                              : Colors.redAccent,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          hasDelivery ? 'توصيل متاح' : 'لا يوجد توصيل',
+                          style: GoogleFonts.cairo(
+                            fontSize: 11,
+                            color: hasDelivery
+                                ? const Color(0xFF235525)
+                                : Colors.redAccent,
                           ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                           Icon(
-                            Icons.delivery_dining,
-                            size: 15,
-                            color: hasDelivery ? const Color(0xFF235525) : Colors.redAccent,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            hasDelivery ? 'توصيل متاح' : 'لا يوجد توصيل',
-                            style: GoogleFonts.cairo(
-                              fontSize: 11,
-                              color: hasDelivery ? const Color(0xFF235525) : Colors.redAccent,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                
+                ),
               ],
             ),
             Padding(

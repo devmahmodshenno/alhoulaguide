@@ -1,11 +1,24 @@
-// lib/views/screen/restaurantsPage.dart
+import 'package:alhoulaguide/models/restaurant_model.dart';
+import 'package:alhoulaguide/services/restaurant_service.dart';
 import 'package:alhoulaguide/views/widgets/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// عدّل المسار حسب مكان الملف عندك
 
-class RestaurantsPage extends StatelessWidget {
+class RestaurantsPage extends StatefulWidget {
   const RestaurantsPage({super.key});
+
+  @override
+  State<RestaurantsPage> createState() => _RestaurantsPageState();
+}
+
+class _RestaurantsPageState extends State<RestaurantsPage> {
+  late Future<List<RestaurantModel>> _restaurantsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _restaurantsFuture = RestaurantService.getAllRestaurants();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,36 +33,51 @@ class RestaurantsPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 35, 85, 37),iconTheme: IconThemeData(color: const Color.fromARGB(255, 244, 231, 54)),
+        backgroundColor: const Color.fromARGB(255, 35, 85, 37),
+        iconTheme: IconThemeData(
+          color: const Color.fromARGB(255, 244, 231, 54),
+        ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        children: [
-          restaurantCard(
-            restaurantName: 'مطعم الحولة',
-            imagePath: 'images/restaurant.jpeg',
-            restaurantDescription:
-                'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
-            restaurantPhone: '0991234567',
-            hasDelivery: true,
-            isFavorite: true,
-            areaName: 'تلذهب',
-            address: 'شارع السوق',
-            onRemoveFavorite: () {},
-          ),
-          restaurantCard(
-            restaurantName: ' مطعم الطيبة',
-            imagePath: 'images/restaurant.jpeg',
-            restaurantDescription:
-                'مطعم يقدم أطباق متنوعة من المأكولات المحلية والعالمية.',
-            restaurantPhone: '0997654321',
-            hasDelivery: false,
-            isFavorite: false,
-            areaName: 'تلدو',
-            address: 'شارع النخيل',
-            onRemoveFavorite: () {},
-          ),
-        ],
+      body: FutureBuilder(
+        future: _restaurantsFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                "حدث خطأ أثناء تحميل البيانات",
+                style: GoogleFonts.cairo(fontSize: 15, color: Colors.red),
+              ),
+            );
+          }
+          final restaurants = snapshot.data ?? [];
+          if (restaurants.isEmpty) {
+            return Center(
+              child: Text(
+                "لا توجد مطاعم مضافة بعد",
+                style: GoogleFonts.cairo(fontSize: 15),
+              ),
+            );
+          }
+          return ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            itemCount: restaurants.length,
+            itemBuilder: (context, index) {
+              final restaurant = restaurants[index];
+              return RestaurantCard(
+                restaurantName: restaurant.restaurantName,
+                 restaurantDescription: restaurant.restaurantDescription??'',
+                  restaurantPhone: restaurant.restaurantPhone,
+                   hasDelivery: restaurant.restaurantHasDelivery,
+                    areaName: restaurant.areaName ??'',
+                    address: restaurant.restaurantAddress??'',
+                     imagePath: restaurant.restaurantImageUrl??'images/images.jpeg',
+                    );
+            },
+          );
+        },
       ),
     );
   }
