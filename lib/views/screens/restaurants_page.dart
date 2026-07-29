@@ -1,4 +1,5 @@
 import 'package:alhoulaguide/models/restaurant_model.dart';
+import 'package:alhoulaguide/services/favorites_service.dart';
 import 'package:alhoulaguide/services/restaurant_service.dart';
 import 'package:alhoulaguide/views/widgets/restaurant_card.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,46 @@ class RestaurantsPage extends StatefulWidget {
 
 class _RestaurantsPageState extends State<RestaurantsPage> {
   late Future<List<RestaurantModel>> _restaurantsFuture;
+  Set<String> _favoritesId = {};
 
   @override
   void initState() {
     super.initState();
     _restaurantsFuture = RestaurantService.getAllRestaurants();
+  }
+
+  Future<List<RestaurantModel>> _loadData() async {
+    final results = await Future.wait([
+      RestaurantService.getAllRestaurants(),
+      FavoritesService.getFavoritesId('restaurant'),
+    ]);
+
+    _favoritesId = results[1] as Set<String>;
+    return results[0] as List<RestaurantModel>;
+  }
+
+  Future<void> _toggleFavorite(String restaurantId) async {
+    final isCurrentlyFavorite = _favoritesId.contains(restaurantId);
+
+    setState(() {
+      if (isCurrentlyFavorite) {
+        _favoritesId.remove(restaurantId);
+      } else {
+        _favoritesId.add(restaurantId);
+      }
+    });
+
+    if (isCurrentlyFavorite) {
+      await FavoritesService.removeFavorite(
+        itemType: 'restaurant',
+        itemId: restaurantId,
+      );
+    } else {
+      await FavoritesService.addFavorite(
+        itemType: 'restaurant',
+        itemId: restaurantId,
+      );
+    }
   }
 
   @override
@@ -68,13 +104,16 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
               final restaurant = restaurants[index];
               return RestaurantCard(
                 restaurantName: restaurant.restaurantName,
-                 restaurantDescription: restaurant.restaurantDescription??'',
-                  restaurantPhone: restaurant.restaurantPhone,
-                   hasDelivery: restaurant.restaurantHasDelivery,
-                    areaName: restaurant.areaName ??'',
-                    address: restaurant.restaurantAddress??'',
-                     imagePath: restaurant.restaurantImageUrl??'images/images.jpeg',
-                    );
+                restaurantDescription: restaurant.restaurantDescription ?? '',
+                restaurantPhone: restaurant.restaurantPhone,
+                hasDelivery: restaurant.restaurantHasDelivery,
+                areaName: restaurant.areaName ?? '',
+                address: restaurant.restaurantAddress ?? '',
+                imagePath:
+                    restaurant.restaurantImageUrl ?? 'images/restaurant.jpeg',
+                isFavorite: _favoritesId.contains(restaurant.restaurantId),
+                onRemoveFavorite: () => _toggleFavorite(restaurant.restaurantId),
+              );
             },
           );
         },
