@@ -49,13 +49,33 @@ class RestaurantCard extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(14),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   imagePath,
                   height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const SizedBox(
+                      height: 150,
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: 150,
+                      color: Colors.grey.shade200,
+                      child: Center(
+                        child: const Icon(
+                          Icons.image_not_supported,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
+              // أيقونة المفضلة داخل دائرة رمادية فاتحة واضحة
               PositionedDirectional(
                 top: 8,
                 end: 8,
@@ -71,11 +91,12 @@ class RestaurantCard extends StatelessWidget {
                       color: isFavorite
                           ? Colors.redAccent
                           : Colors.grey.shade700,
-                      size: 28,
+                      size: 25,
                     ),
                   ),
                 ),
               ),
+
               PositionedDirectional(
                 bottom: 8,
                 start: 10,
@@ -120,6 +141,8 @@ class RestaurantCard extends StatelessWidget {
               ),
             ],
           ),
+
+          // ترتيب النصوص: الاسم ← الوصف ← العنوان ← رقم الهاتف
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
             child: Column(
@@ -132,7 +155,16 @@ class RestaurantCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
+
+                Text(
+                  restaurantDescription,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.cairo(fontSize: 13, color: Colors.black87),
+                ),
+                const SizedBox(height: 8),
+
                 Row(
                   children: [
                     const Icon(
@@ -154,13 +186,7 @@ class RestaurantCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  restaurantDescription,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.cairo(fontSize: 13, color: Colors.black87),
-                ),
-                const SizedBox(height: 10),
+
                 Row(
                   children: [
                     const Icon(

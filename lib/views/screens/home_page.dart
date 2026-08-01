@@ -1,4 +1,3 @@
-
 import 'package:alhoulaguide/views/screens/all_sections_page.dart';
 import 'package:alhoulaguide/views/screens/favorites_page.dart';
 import 'package:alhoulaguide/views/screens/home_content.dart';
@@ -17,16 +16,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomeContent(),
-    AllSectionsPage(),
-    FavoritesPage(),
-    MorePage(),
-  ];
+  final GlobalKey<FavoritesPageState> _favoritesKey =
+      GlobalKey<FavoritesPageState>();
+
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      const HomeContent(),
+      const AllSectionsPage(),
+      FavoritesPage(key: _favoritesKey), // ✅ الربط الصحيح
+      const MorePage(),
+    ];
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 2) {
+      _favoritesKey.currentState?.refresh();
+    }
   }
 
   @override

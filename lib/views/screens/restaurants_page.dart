@@ -19,13 +19,13 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
   @override
   void initState() {
     super.initState();
-    _restaurantsFuture = RestaurantService.getAllRestaurants();
+    _restaurantsFuture = _loadData();
   }
 
   Future<List<RestaurantModel>> _loadData() async {
     final results = await Future.wait([
       RestaurantService.getAllRestaurants(),
-      FavoritesService.getFavoritesId('restaurant'),
+      FavoritesService.getFavoriteIds('restaurant'),
     ]);
 
     _favoritesId = results[1] as Set<String>;
@@ -110,7 +110,7 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
                 areaName: restaurant.areaName ?? '',
                 address: restaurant.restaurantAddress ?? '',
                 imagePath:
-                    restaurant.restaurantImageUrl ?? 'images/restaurant.jpeg',
+                    restaurant.restaurantImageUrl ?? '',
                 isFavorite: _favoritesId.contains(restaurant.restaurantId),
                 onRemoveFavorite: () => _toggleFavorite(restaurant.restaurantId),
               );
