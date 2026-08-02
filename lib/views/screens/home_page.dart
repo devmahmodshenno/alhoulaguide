@@ -1,7 +1,7 @@
-import 'package:alhoulaguide/views/screens/all_sections_page.dart';
 import 'package:alhoulaguide/views/screens/favorites_page.dart';
 import 'package:alhoulaguide/views/screens/home_content.dart';
 import 'package:alhoulaguide/views/screens/more_page.dart';
+import 'package:alhoulaguide/views/screens/sections_page.dart';
 import 'package:alhoulaguide/views/widgets/custom_btm_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _pages = [
       const HomeContent(),
-      const AllSectionsPage(),
+      const SectionsPage(),
       FavoritesPage(key: _favoritesKey), // ✅ الربط الصحيح
       const MorePage(),
     ];
